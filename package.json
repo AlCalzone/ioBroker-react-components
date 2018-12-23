@@ -1,0 +1,53 @@
+{
+  "name": "iobroker-react-components",
+  "version": "0.0.1",
+  "description": "React components for materializeCSS in ioBroker",
+  "author": {
+    "name": "AlCalzone",
+    "email": "d.griesel@gmx.net"
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jquery": "^3.3.28",
+    "@types/materialize-css": "^1.0.6",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/sinon": "^7.0.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jsdom": "^13.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-test-renderer": "^16.7.0",
+    "sinon": "^7.2.2",
+    "source-map-support": "^0.5.9",
+    "ts-loader": "^5.3.2",
+    "tslint": "^5.12.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlCalzone/ioBroker-react-components/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlCalzone/ioBroker-react-components.git"
+  },
+  "homepage": "https://github.com/AlCalzone/ioBroker-react-components#readme"
+}

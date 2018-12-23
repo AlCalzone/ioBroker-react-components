@@ -1,0 +1,36 @@
+Gruntfile.js
+gulpfile.js
+tasks
+node_modules
+.idea
+.git
+/node_modules
+test/
+src/
+travis/
+.travis.yml
+appveyor.yml
+obj/
+bin/
+.vs*/
+tslint.json
+tsconfig.json
+webpack.config.js
+webpack.tsconfig.json
+*.sln
+*.njsproj*
+iobroker*.*.tgz
+**/build/**/*.map
+
+# Local debugging password
+*_password.json
+deploy_local.*
+
+Thumbs.db
+
+# NYC coverage files
+coverage
+.nyc*
+
+# maintenance scripts
+maintenance/**

@@ -1,0 +1,10 @@
+node_modules
+
+# npm package files
+iobroker*.*.tgz
+
+Thumbs.db
+
+# NYC coverage files
+coverage
+.nyc*
