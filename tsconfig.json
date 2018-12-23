@@ -1,0 +1,27 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"noEmit": true,
+		"noEmitOnError": true,
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"outDir": "build/",
+		"removeComments": false,
+		"jsx": "react",
+
+		"strict": true,
+		"resolveJsonModule": true,
+
+		"sourceMap": false,
+		"inlineSourceMap": false,
+		// "sourceRoot": "src/",
+		"target": "es6"
+	},
+	"include": [
+		"**/*.ts"
+	],
+	"exclude": [
+		"build/**",
+		"node_modules/**"
+	]
+}

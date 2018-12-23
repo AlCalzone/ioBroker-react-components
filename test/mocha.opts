@@ -1,0 +1,7 @@
+--require test/setupMocha.js
+--require test/setupJSDom.js
+--require ts-node/register
+--require source-map-support/register
+--watch-extensions ts
+--watch-extensions tsx
+**/src/**/*.test.tsx
