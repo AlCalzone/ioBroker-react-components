@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { CancelableInput } from "./components/cancelable-input";
 import { Label } from "./components/label";
 import { MultiDropdown } from "./components/multi-dropdown";
 
@@ -65,6 +66,11 @@ function Root() {
 						checkedChanged={(selected) => console.log(`selected options: ${selected}`)}
 						checkedOptions={["Option 2"]}
 					/>
+				</div>
+
+				<div className="col c4">
+					<h1>Cancelable input</h1>
+					<CancelableInput text="Default text" maxLength={15} textChanged={console.log} />
 				</div>
 			</div>
 		</ErrorBoundary>
