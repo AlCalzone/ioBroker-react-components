@@ -1,26 +1,19 @@
-Gruntfile.js
-gulpfile.js
-tasks
-node_modules
-.idea
-.git
-/node_modules
-test/
+.vs*/
+.git/
+**/build/**/*.map
+dev-server/
+node_modules/
 src/
+test/
 travis/
+
+.editorconfig
 .travis.yml
 appveyor.yml
-obj/
-bin/
-.vs*/
+iobroker*.*.tgz
 tslint.json
 tsconfig.json
-webpack.config.js
-webpack.tsconfig.json
-*.sln
-*.njsproj*
-iobroker*.*.tgz
-**/build/**/*.map
+webpack.*.js*
 
 # Local debugging password
 *_password.json

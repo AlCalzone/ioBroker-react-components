@@ -1,12 +1,12 @@
 import * as React from "react";
-interface MultiDropdownProps {
+export interface MultiDropdownProps {
     options: {
         [key: string]: string;
     };
     checkedOptions?: string[];
     checkedChanged: (selected: string[]) => void;
 }
-interface MultiDropdownState {
+export interface MultiDropdownState {
     checkedOptions: string[];
 }
 export declare class MultiDropdown extends React.Component<MultiDropdownProps, MultiDropdownState> {
@@ -21,4 +21,3 @@ export declare class MultiDropdown extends React.Component<MultiDropdownProps, M
     private readStateFromUI;
     render(): JSX.Element;
 }
-export {};

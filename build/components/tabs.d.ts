@@ -1,5 +1,5 @@
 import * as React from "react";
-interface TabsProps {
+export interface TabsProps {
     id?: string;
     labels: string[];
     children: React.ReactNode[];
@@ -10,4 +10,3 @@ export declare class Tabs extends React.Component<TabsProps> {
     constructor(props: TabsProps);
     render(): JSX.Element;
 }
-export {};

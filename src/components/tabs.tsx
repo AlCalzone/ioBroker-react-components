@@ -1,7 +1,7 @@
 // Renders some components in jQuery UI tabs
 import * as React from "react";
 
-interface TabsProps {
+export interface TabsProps {
 	id?: string;
 	labels: string[];
 	children: React.ReactNode[];

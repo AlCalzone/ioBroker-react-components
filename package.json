@@ -6,7 +6,8 @@
     "name": "AlCalzone",
     "email": "d.griesel@gmx.net"
   },
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.1.7",

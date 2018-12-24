@@ -4,13 +4,13 @@ import * as React from "react";
 // tslint:disable-next-line:variable-name
 const M_Select = (M.FormSelect || (M as any).Select as typeof M.FormSelect);
 
-interface MultiDropdownProps {
+export interface MultiDropdownProps {
 	options: {[key: string]: string};
 	checkedOptions?: string[];
 	checkedChanged: (selected: string[]) => void;
 }
 
-interface MultiDropdownState {
+export interface MultiDropdownState {
 	checkedOptions: string[];
 }
 
