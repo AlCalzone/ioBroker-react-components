@@ -1,9 +1,9 @@
 import * as React from "react";
-interface CancelableInputState {
+export interface CancelableInputState {
     editing: boolean;
     text: string;
 }
-interface CancelableInputProps {
+export interface CancelableInputProps {
     text: string;
     maxLength?: number;
     textChanged: (newText: string) => void;
@@ -18,4 +18,3 @@ export declare class CancelableInput extends React.Component<CancelableInputProp
     private selectPending;
     render(): JSX.Element;
 }
-export {};

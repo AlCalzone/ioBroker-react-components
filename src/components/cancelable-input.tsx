@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface CancelableInputState {
+export interface CancelableInputState {
 	editing: boolean;
 	text: string;
 }
-interface CancelableInputProps {
+export interface CancelableInputProps {
 	text: string;
 	maxLength?: number;
 	textChanged: (newText: string) => void;

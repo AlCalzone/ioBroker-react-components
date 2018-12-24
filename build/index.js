@@ -8,3 +8,5 @@ var tabs_1 = require("./components/tabs");
 exports.Tabs = tabs_1.Tabs;
 var tooltip_1 = require("./components/tooltip");
 exports.Tooltip = tooltip_1.Tooltip;
+var cancelable_input_1 = require("./components/cancelable-input");
+exports.CancelableInput = cancelable_input_1.CancelableInput;
