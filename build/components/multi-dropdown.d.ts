@@ -6,18 +6,13 @@ export interface MultiDropdownProps {
     checkedOptions?: string[];
     checkedChanged: (selected: string[]) => void;
 }
-export interface MultiDropdownState {
-    checkedOptions: string[];
-}
-export declare class MultiDropdown extends React.Component<MultiDropdownProps, MultiDropdownState> {
+export declare class MultiDropdown extends React.Component<MultiDropdownProps> {
     private static defaultProps;
     constructor(props: MultiDropdownProps);
     private dropdown;
     private mcssSelect;
     componentDidMount(): void;
     componentWillUnmount(): void;
-    componentDidUpdate(): void;
-    private updateUI;
     private readStateFromUI;
     render(): JSX.Element;
 }

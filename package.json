@@ -1,7 +1,7 @@
 {
   "name": "iobroker-react-components",
-  "version": "0.0.1",
-  "description": "React components for materializeCSS in ioBroker",
+  "version": "1.0.0",
+  "description": "React components for MaterializeCSS in ioBroker",
   "author": {
     "name": "AlCalzone",
     "email": "d.griesel@gmx.net"

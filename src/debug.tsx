@@ -65,7 +65,16 @@ function Root() {
 						}}
 						checkedChanged={(selected) => console.log(`selected options: ${selected}`)}
 						checkedOptions={["Option 2"]}
+					/><br />
+					<MultiDropdown
+						options={{
+							"Option 3": "Wert 3",
+							"Option 4": "Wert 4",
+						}}
+						checkedChanged={(selected) => console.log(`selected options: ${selected}`)}
+						checkedOptions={["Option 4"]}
 					/>
+
 				</div>
 
 				<div className="col c4">

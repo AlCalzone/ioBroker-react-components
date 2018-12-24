@@ -5,16 +5,12 @@ import * as React from "react";
 const M_Select = (M.FormSelect || (M as any).Select as typeof M.FormSelect);
 
 export interface MultiDropdownProps {
-	options: {[key: string]: string};
+	options: { [key: string]: string };
 	checkedOptions?: string[];
 	checkedChanged: (selected: string[]) => void;
 }
 
-export interface MultiDropdownState {
-	checkedOptions: string[];
-}
-
-export class MultiDropdown extends React.Component<MultiDropdownProps, MultiDropdownState> {
+export class MultiDropdown extends React.Component<MultiDropdownProps> {
 
 	private static defaultProps = {
 		checkedOptions: [] as string[],
@@ -22,10 +18,6 @@ export class MultiDropdown extends React.Component<MultiDropdownProps, MultiDrop
 
 	constructor(props: MultiDropdownProps) {
 		super(props);
-		this.state = {
-			checkedOptions: props.checkedOptions!,
-		};
-
 		this.readStateFromUI = this.readStateFromUI.bind(this);
 	}
 
@@ -33,12 +25,10 @@ export class MultiDropdown extends React.Component<MultiDropdownProps, MultiDrop
 	private mcssSelect: M.FormSelect | null | undefined;
 
 	public componentDidMount() {
-		this.updateUI();
-
 		if (this.dropdown != null) {
 			$(this.dropdown).on("change", this.readStateFromUI);
 
-			this.mcssSelect = new M_Select(this.dropdown);
+			this.mcssSelect = M_Select.getInstance(this.dropdown) || new M_Select(this.dropdown);
 		}
 	}
 
@@ -48,41 +38,25 @@ export class MultiDropdown extends React.Component<MultiDropdownProps, MultiDrop
 		}
 	}
 
-	public componentDidUpdate() {
-		this.updateUI();
-	}
-
-	private updateUI() {
-		if (!this.dropdown) return;
-		const $dropdown = $(this.dropdown);
-		$dropdown.find("option:selected").prop("selected", false);
-		this.state.checkedOptions.forEach(val => {
-			$dropdown.find(`option[value="${val}"]`).prop("selected", true);
-		});
-	}
-
 	private readStateFromUI() {
 		if (!this.mcssSelect) return;
-		// read data from UI
-		this.setState({checkedOptions: this.mcssSelect.getSelectedValues()}, () => {
-			// update the adapter settings
-			this.props.checkedChanged(this.state.checkedOptions);
-		});
+		// update the adapter settings
+		this.props.checkedChanged(this.mcssSelect.getSelectedValues());
 	}
 
 	public render() {
 		return (
 			<select
 				multiple={true}
-				ref={(me) => this.dropdown = me}
-				defaultValue={[""]}
+				ref={me => this.dropdown = me}
+				defaultValue={this.props.checkedOptions}
 			>
-			<option value="" disabled>{_("select devices")}</option>
-			{Object.keys(this.props.options).map(k => (
-				<option key={k} value={k}>
-					{this.props.options[k]}
-				</option>
-			))}
+				<option value="" disabled>{_("select devices")}</option>
+				{Object.keys(this.props.options).map(k => (
+					<option key={k} value={k}>
+						{this.props.options[k]}
+					</option>
+				))}
 			</select>
 		);
 	}
