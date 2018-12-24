@@ -10,4 +10,3 @@ function Label(props) {
         props.tooltip != null && React.createElement(tooltip_1.Tooltip, { text: props.tooltip })));
 }
 exports.Label = Label;
-//# sourceMappingURL=label.js.map

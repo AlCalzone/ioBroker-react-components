@@ -49,7 +49,9 @@
   "scripts": {
     "test": "mocha",
     "test:watch": "mocha --watch",
+    "prebuild": "rimraf ./build",
     "build": "tsc -p src/tsconfig.json",
+    "postbuild": "rimraf ./build/debug.{js,d.ts}",
     "dev": "webpack-dev-server --open"
   },
   "license": "MIT",

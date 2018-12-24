@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 /** Helper component for a tooltip */
 function Tooltip(props) {
-    return React.createElement("img", { className: "admin-tooltip-icon", src: "../../img/info.png", title: _(props.text) });
+    return React.createElement("i", { className: "material-icons", title: _(props.text) }, "live_help");
 }
 exports.Tooltip = Tooltip;
-//# sourceMappingURL=tooltip.js.map
