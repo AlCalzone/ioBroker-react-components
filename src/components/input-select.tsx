@@ -8,8 +8,8 @@ import * as React from 'react';
 
 import { uuidv4 } from '../lib/helpers';
 
-export interface InputSelectProps {
-  onChange: (newValue: string | string[]) => void;
+export interface InputSelectProps<T extends string | string[]> {
+  onChange: (newValue: T extends string ? string : string[]) => void;
 
   /**
    * Unique ID for this element.
@@ -25,9 +25,9 @@ export interface InputSelectProps {
 
   /**
    * The selected value of the input.
-   * Must be a string if `multiple` is false and an array of strings if `multiple` is true.
+   * A string for a single select or an array of strings for a multi select.
    */
-  value: string | string[];
+  value: T;
 
   /**
    * Additional class names.
@@ -47,31 +47,26 @@ export interface InputSelectProps {
   disabledOptions?: string[];
 
   /**
-   * Allow multiple options to be selected.
-   */
-  multiple?: boolean;
-
-  /**
    * If the input element should be completeley disabled.
    */
   disabled?: boolean;
 }
 
-interface InputSelectState {
+interface InputSelectState<T extends string | string[]> {
   id: string;
-  value: string | string[];
+  value: T;
   options: Record<string, string>;
 }
 
 /**
  * A select input.
  */
-export class InputSelect extends React.PureComponent<InputSelectProps, InputSelectState> {
+export class InputSelect<T extends string | string[]> extends React.PureComponent<InputSelectProps<T>, InputSelectState<T>> {
   private selectElement: HTMLSelectElement | null | undefined;
 
   private formSelect: M.FormSelect | null | undefined;
 
-  constructor(props: InputSelectProps) {
+  constructor(props: InputSelectProps<T>) {
     super(props);
 
     let options: Record<string, string>;
@@ -97,7 +92,7 @@ export class InputSelect extends React.PureComponent<InputSelectProps, InputSele
     }
   }
 
-  public componentDidUpdate (prevProps: InputSelectProps): void {
+  public componentDidUpdate (prevProps: InputSelectProps<T>): void {
     if (prevProps.value !== this.props.value) {
       this.setState({
         value: this.props.value
@@ -120,18 +115,9 @@ export class InputSelect extends React.PureComponent<InputSelectProps, InputSele
     }
     return (
       <div className={className}>
-        <select id={this.state.id} value={this.state.value} onChange={this.handleChange} disabled={this.props.disabled} multiple={this.props.multiple} ref={me => this.selectElement = me}>
+        <select id={this.state.id} value={this.state.value} onChange={this.handleChange} disabled={this.props.disabled} multiple={Array.isArray(this.props.value)} ref={me => this.selectElement = me}>
           {Object.keys(this.state.options).map((key) => {
             const attrs: React.OptionHTMLAttributes<HTMLOptionElement> = {};
-            /*if (Array.isArray(this.state.value)) {
-              if (this.state.value.indexOf(key) > -1) {
-                attrs.selected = true;
-              }
-            } else {
-              if (key === this.state.value) {
-                attrs.selected = true;
-              }
-            }*/
             if (this.props.disabledOptions && this.props.disabledOptions.indexOf(key) > -1) {
               attrs.disabled = true;
             }
@@ -147,12 +133,12 @@ export class InputSelect extends React.PureComponent<InputSelectProps, InputSele
   private handleChange (event: React.ChangeEvent<HTMLSelectElement>): void {
     if (!this.formSelect) return;
 
-    const value = this.props.multiple ? this.formSelect.getSelectedValues() : event.target.value;
+    const value = (Array.isArray(this.props.value) ? this.formSelect.getSelectedValues() : event.target.value) as T;
 
     this.setState({
       value: value
     }, () => {
-      this.props.onChange(this.state.value);
+      this.props.onChange(this.state.value as any);
     });
   }
 }

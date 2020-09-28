@@ -1,6 +1,6 @@
 import * as React from 'react';
-export interface InputSelectProps {
-    onChange: (newValue: string | string[]) => void;
+export interface InputSelectProps<T extends string | string[]> {
+    onChange: (newValue: T extends string ? string : string[]) => void;
     /**
      * Unique ID for this element.
      * If not set a UUID will be generated.
@@ -13,9 +13,9 @@ export interface InputSelectProps {
     label: string | JSX.Element;
     /**
      * The selected value of the input.
-     * Must be a string if `multiple` is false and an array of strings if `multiple` is true.
+     * A string for a single select or an array of strings for a multi select.
      */
-    value: string | string[];
+    value: T;
     /**
      * Additional class names.
      * Default: `s12`
@@ -31,28 +31,24 @@ export interface InputSelectProps {
      */
     disabledOptions?: string[];
     /**
-     * Allow multiple options to be selected.
-     */
-    multiple?: boolean;
-    /**
      * If the input element should be completeley disabled.
      */
     disabled?: boolean;
 }
-interface InputSelectState {
+interface InputSelectState<T extends string | string[]> {
     id: string;
-    value: string | string[];
+    value: T;
     options: Record<string, string>;
 }
 /**
  * A select input.
  */
-export declare class InputSelect extends React.PureComponent<InputSelectProps, InputSelectState> {
+export declare class InputSelect<T extends string | string[]> extends React.PureComponent<InputSelectProps<T>, InputSelectState<T>> {
     private selectElement;
     private formSelect;
-    constructor(props: InputSelectProps);
+    constructor(props: InputSelectProps<T>);
     componentDidMount(): void;
-    componentDidUpdate(prevProps: InputSelectProps): void;
+    componentDidUpdate(prevProps: InputSelectProps<T>): void;
     render(): JSX.Element;
     private handleChange;
 }

@@ -53,17 +53,8 @@ class InputSelect extends React.PureComponent {
             className = 'input-field col ' + this.props.className;
         }
         return (React.createElement("div", { className: className },
-            React.createElement("select", { id: this.state.id, value: this.state.value, onChange: this.handleChange, disabled: this.props.disabled, multiple: this.props.multiple, ref: me => this.selectElement = me }, Object.keys(this.state.options).map((key) => {
+            React.createElement("select", { id: this.state.id, value: this.state.value, onChange: this.handleChange, disabled: this.props.disabled, multiple: Array.isArray(this.props.value), ref: me => this.selectElement = me }, Object.keys(this.state.options).map((key) => {
                 const attrs = {};
-                /*if (Array.isArray(this.state.value)) {
-                  if (this.state.value.indexOf(key) > -1) {
-                    attrs.selected = true;
-                  }
-                } else {
-                  if (key === this.state.value) {
-                    attrs.selected = true;
-                  }
-                }*/
                 if (this.props.disabledOptions && this.props.disabledOptions.indexOf(key) > -1) {
                     attrs.disabled = true;
                 }
@@ -75,7 +66,7 @@ class InputSelect extends React.PureComponent {
     handleChange(event) {
         if (!this.formSelect)
             return;
-        const value = this.props.multiple ? this.formSelect.getSelectedValues() : event.target.value;
+        const value = (Array.isArray(this.props.value) ? this.formSelect.getSelectedValues() : event.target.value);
         this.setState({
             value: value
         }, () => {

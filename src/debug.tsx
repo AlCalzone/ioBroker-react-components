@@ -151,8 +151,7 @@ class InputTest extends React.Component<InputTestProps, InputTestState> {
 					options={["0", "1", "2", "3", "4", "5", "6", "7"]}
 					disabledOptions={["5"]}
 					onChange={console.log}
-					multiple={true}
-					value={["1", "2"]}
+					value={["1", "2"] /* the array makes is a multi select */}
 				/>
 			</div>
 
