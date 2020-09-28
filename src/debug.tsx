@@ -4,6 +4,12 @@ import { CancelableInput } from "./components/cancelable-input";
 import { Label } from "./components/label";
 import { MultiDropdown } from "./components/multi-dropdown";
 
+import { Button } from "./components/button";
+import { InputText } from "./components/input-text";
+import { InputCheckbox } from "./components/input-checkbox";
+import { InputBitmask } from "./components/input-bitmask";
+import { InputSelect } from "./components/input-select";
+
 // Translate polyfill
 (window as any)._ = (text: string) => text;
 
@@ -46,6 +52,119 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 		return this.props.children;
 	}
 }
+
+interface InputTestProps {}
+interface InputTestState {
+	textError: string | null;
+	disable: boolean;
+}
+class InputTest extends React.Component<InputTestProps, InputTestState> {
+
+	constructor (props: InputTestProps) {
+		super(props);
+
+		this.state = {
+			textError: null,
+			disable: false
+		};
+	}
+
+	render () {
+		return (<>
+			<div className="row">
+				<InputText
+					label="InputText"
+					className="s6 m3"
+					value="test"
+					onChange={console.log}
+				>
+					<span>Some description...</span>
+				</InputText>
+				<InputText
+					label="InputText Upper"
+					className="s6 m3"
+					value=""
+					onChange={console.log}
+					transform="upperCase"
+					disabled={this.state.disable}
+				>
+					<span>All input will be upper case</span>
+				</InputText>
+				<InputText
+					label="Only hex numbers"
+					className="s6 m3"
+					value=""
+					onChange={(v) => this.setState({textError: v.match(/^[0-9a-f]*$/) ? null : 'Must be a hex number' })}
+					transform="lowerCase"
+					errorMsg={this.state.textError}
+					disabled={this.state.disable}
+				>
+					<span>Allow only hex numbers</span>
+				</InputText>
+			</div>
+
+			<div className="row">
+				<InputCheckbox
+					label="Disable texts"
+					className="s6 m3"
+					value={this.state.disable}
+					onChange={(v) => this.setState({ disable: v })}
+				>
+					<span>Check this to disable some text inputs</span>
+				</InputCheckbox>
+
+				<InputBitmask
+					label="Bitmask"
+					className="s6 m9"
+					bits={8}
+					value={5}
+					onChange={console.log}
+				>
+					<span>Select the bits...</span>
+				</InputBitmask>
+			</div>
+
+			<div className="row">
+				<InputSelect
+					label="Select"
+					className="s6 m3"
+					options={{
+						a: "A",
+						b: "B",
+						c: "C"
+					}}
+					onChange={console.log}
+					value="a"
+					disabledOptions={["c"]}
+				/>
+				<InputSelect
+					label="Select"
+					className="s6 m3"
+					options={["0", "1", "2", "3", "4", "5"]}
+					disabledOptions={["4", "5"]}
+					onChange={console.log}
+					value=""
+				/>
+				<InputSelect
+					label="Multiselect"
+					className="s6 m3"
+					options={["0", "1", "2", "3", "4", "5", "6", "7"]}
+					disabledOptions={["5"]}
+					onChange={console.log}
+					multiple={true}
+					value={["1", "2"]}
+				/>
+			</div>
+
+			<div className="row">
+				<Button iconName="info" title="Testbutton" onClick={() => alert('button clicked')} />
+				<Button iconName="help" title="Testbutton" size="medium" onClick={() => alert('button clicked')} />
+				<Button iconName="add" title="Testbutton" size="large" onClick={() => alert('button clicked')} />
+			</div>
+		</>);
+	}
+}
+
 function Root() {
 	return (
 		<ErrorBoundary>
@@ -82,6 +201,10 @@ function Root() {
 					<CancelableInput text="Default text" maxLength={15} textChanged={console.log} />
 				</div>
 			</div>
+
+			<hr />
+
+			<InputTest />
 		</ErrorBoundary>
 	);
 }
